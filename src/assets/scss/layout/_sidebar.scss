@@ -1,5 +1,7 @@
 .sidebarArea {
   flex-shrink: 0;
+  position: fixed;
+  height: 100%;
   width: $sidebarWidth;
   background-color: $sidebarColor;
   .sidenav-bg:hover {
@@ -20,4 +22,34 @@
       margin-left: 0px;
     }
   }
+}
+
+.center{
+  width: 100%;
+  margin: auto;
+  text-align: center;
+}
+
+.font-05{
+  font-size: .8rem;
+}
+
+.cursor{
+  cursor: pointer;
+}
+
+.divider:after,
+.divider:before {
+content: "";
+flex: 1;
+height: 1px;
+background: #eee;
+}
+.h-custom {
+height: calc(100% - 73px);
+}
+@media (max-width: 450px) {
+.h-custom {
+height: 100%;
+}
 }

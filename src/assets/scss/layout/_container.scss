@@ -5,7 +5,7 @@
   flex-grow: 1;
 }
 .wrapper {
-  max-width: 1300px;
+  height: 100%; 
   margin: 0 auto;
 }
 .card {
@@ -28,4 +28,18 @@
 }
 .button-group .btn {
   margin: 3px;
+}
+
+.avata{
+  border-radius: 4px;
+}
+
+.name{
+  display: block;
+  display: -webkit-box;
+  width: 250px;
+  -webkit-line-clamp: 1;  /* số dòng hiển thị */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
