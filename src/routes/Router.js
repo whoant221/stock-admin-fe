@@ -1,24 +1,17 @@
 import { lazy } from "react";
 import { Navigate } from "react-router-dom";
-
+import Login from "../views/Login.js";
 /****Layouts*****/
 const FullLayout = lazy(() => import("../layouts/FullLayout.js"));
-
 /***** Pages ****/
-
 const Starter = lazy(() => import("../views/Starter.js"));
-const About = lazy(() => import("../views/About.js"));
-const Alerts = lazy(() => import("../views/ui/Alerts"));
-const Badges = lazy(() => import("../views/ui/Badges"));
-const Buttons = lazy(() => import("../views/ui/Buttons"));
-const Cards = lazy(() => import("../views/ui/Cards"));
-const Grid = lazy(() => import("../views/ui/Grid"));
-const Tables = lazy(() => import("../views/ui/Tables"));
-const Forms = lazy(() => import("../views/ui/Forms"));
-const Breadcrumbs = lazy(() => import("../views/ui/Breadcrumbs"));
-
+const CustomStock = lazy(() => import("../views/ui/CustomStock"));
+const CustomUser = lazy(() => import("../views/ui/CustomUser"));
+const ProjectTables = lazy(() => import("../views/ui/ProjectTable"));
+const AddUser = lazy(() => import("../views/ui/AddUser"));
+const AddStock = lazy(() => import("../views/ui/AddStock"));
+const StockTable = lazy(() => import("../views/ui/StockTable"));
 /*****Routes******/
-
 const ThemeRoutes = [
   {
     path: "/",
@@ -26,17 +19,17 @@ const ThemeRoutes = [
     children: [
       { path: "/", element: <Navigate to="/starter" /> },
       { path: "/starter", exact: true, element: <Starter /> },
-      { path: "/about", exact: true, element: <About /> },
-      { path: "/alerts", exact: true, element: <Alerts /> },
-      { path: "/badges", exact: true, element: <Badges /> },
-      { path: "/buttons", exact: true, element: <Buttons /> },
-      { path: "/cards", exact: true, element: <Cards /> },
-      { path: "/grid", exact: true, element: <Grid /> },
-      { path: "/table", exact: true, element: <Tables /> },
-      { path: "/forms", exact: true, element: <Forms /> },
-      { path: "/breadcrumbs", exact: true, element: <Breadcrumbs /> },
+      { path: "/customstock", exact: true, element: <CustomStock /> },
+      { path: "/customuser", exact: true, element: <CustomUser /> },
+      { path: "/table", exact: true, element: <ProjectTables /> },
+      { path: "/adduser", exact: true, element: <AddUser /> },
+      { path: "/addstock", exact: true, element: <AddStock /> },
+      { path: "/stocktable", exact: true, element: <StockTable /> },
     ],
   },
+  {
+    path: "login",
+    element: <Login />
+  },
 ];
-
 export default ThemeRoutes;
