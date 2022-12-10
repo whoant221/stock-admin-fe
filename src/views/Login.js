@@ -54,7 +54,7 @@ function Login() {
 
                         <div className="text-center text-lg-start mt-4 pt-2">
                             <button type="submit" className="btn btn-primary btn-lg" onClick={login}>Login</button>
-                            <button onClickCapture={logout}>logout user</button>
+                            {/* <button onClickCapture={logout}>logout user</button> */}
                         </div>
                     </form>
                 </div>

@@ -12,7 +12,7 @@ const tableData = [
     name: "ACB",
     adress: "Ngân hàng thương mại cổ phần đầu tư và phát triển việt nam",
     project: "234",
-    status: "234",
+    status: "pending",
     weeks: "35",
     budget: "95K",
   },
@@ -21,7 +21,7 @@ const tableData = [
     name: "BID",
     adress: "Tập đoàn xăng dầu Việt Nam",
     project: "4567",
-    status: "890",
+    status: "done",
     weeks: "35",
     budget: "95K",
   },
@@ -30,7 +30,7 @@ const tableData = [
     name: "BVH",
     adress: "Tập đoàn Bảo Việt",
     project: "8907",
-    status: "234",
+    status: "holt",
     weeks: "35",
     budget: "95K",
   },
@@ -39,7 +39,7 @@ const tableData = [
     name: "CTG",
     adress: "Công ty cổ phần tập đoàn Hòa Phát",
     project: "809",
-    status: "3245",
+    status: "pending",
     weeks: "35",
     budget: "95K",
   },
@@ -48,7 +48,7 @@ const tableData = [
     name: "FPT",
     adress: "Công ty cổ phần PFT",
     project: "54363",
-    status: "098",
+    status: "done",
     weeks: "35",
     budget: "95K",
   },
@@ -67,6 +67,7 @@ const Breadcrumbs = () => {
               <th>Trần</th>
               <th>Sàn</th>
               <th>Khớp lệnh</th>
+              <th>Trạng thái</th>
               <th>Tổng KL</th>
               <th>Cao</th>
               <th>Thấp</th>
@@ -95,6 +96,15 @@ const Breadcrumbs = () => {
                 <td>{tdata.status}</td>
                 <td>{tdata.weeks}</td>
                 <td>{tdata.budget}</td>
+                <td>
+                  {
+                    tdata.status === "pending" 
+                    ? ( <span className="p-2 bg-danger rounded-circle d-inline-block ms-3"></span> ) 
+                    : tdata.status === "holt" 
+                    ? ( <span className="p-2 bg-warning rounded-circle d-inline-block ms-3"></span>) 
+                    : ( <span className="p-2 bg-success rounded-circle d-inline-block ms-3"></span>)
+                  }
+                </td>
                 <td>{tdata.budget}</td>
                 <td>{tdata.budget}</td>
                 <td>{tdata.budget}</td>
