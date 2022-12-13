@@ -1,5 +1,40 @@
 import { Card, Row, Col, CardTitle, CardBody, Button, Form, FormGroup, Label, Input, FormText,} from "reactstrap";
+import { useEffect, useState } from 'react';
+import admin from "../../api/admin";
+import { useNavigate } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
   const Badges = () => {
+    const navigate = useNavigate();
+
+    const [SIC, setSIC] = useState('');
+    const [name, setName] = useState('');
+    const [price, setPrice] = useState('');
+
+
+    const AddStock = async () => {
+      if ( SIC == '' || name == '' || price == '') toast.error("Vui lòng nhập thông tin đầy đủ !");
+      else {
+          try {
+              const res = await admin.postAddStock({
+                  name: name,
+                  symbol: SIC,
+                  initial_price: price,
+              });
+              if (res.success === false) toast.error("Đường truyền bị ngắt ngoãng !");
+              else {
+                  toast.success("Đăng nhập thành công !");
+                  navigate('/');
+              }
+          }
+          catch (err) {
+              toast.error('Tài khoản ko tồn tại !');
+          }
+      }
+    }
+
+
     return (
       <Row>
         <Col>
@@ -18,7 +53,8 @@ import { Card, Row, Col, CardTitle, CardBody, Button, Form, FormGroup, Label, In
                             id="exampleEmail"
                             name="email"
                             placeholder="nhập mã SIC"
-                            type="email"
+                            type="text"
+                            onChange={(e) => setSIC(e.target.value)}
                         />
                         </FormGroup>
                         <FormGroup>
@@ -27,7 +63,8 @@ import { Card, Row, Col, CardTitle, CardBody, Button, Form, FormGroup, Label, In
                             id="exampleEmail"
                             name="email"
                             placeholder="nhập tên ngành"
-                            type="email"
+                            type="text"
+                            onChange={(e) => setName(e.target.value)}
                         />
                         </FormGroup>
                         <FormGroup>
@@ -36,11 +73,12 @@ import { Card, Row, Col, CardTitle, CardBody, Button, Form, FormGroup, Label, In
                           id="examplePassword"
                           name="password"
                           placeholder="nhập giá chào sàn (x1,000)"
-                          type="password"
+                          type="text"
+                          onChange={(e) => setPrice(e.target.value)}
                         />
                       </FormGroup>
   
-                        <Button className="btn" color="success">
+                        <Button className="btn" color="success" onClick={AddStock}>
                             Tạo cổ phiếu
                         </Button>
                     </Form>

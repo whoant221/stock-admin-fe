@@ -1,24 +1,8 @@
 import axios from "./axiosConfig";
 
 //post
-const postRegister =(body) => {
-    return axios.post(`/api/v1/auth/register`, body)
-};
-
-const postLogin =(body) => {
-    return axios.post(`/api/v1/auth/login`, body)
-};
-
-const postRefills =(body) => {
-    return axios.post(`/api/v1/assets/deposit`, body)
-};
-
-const postWithdraw =(body) => {
-    return axios.post(`/api/v1/assets/withdraw`, body)
-};
-
-const postCommand =(body) => {
-    return axios.post(`/api/v1/orders`, body)
+const postAddStock =(body) => {
+    return axios.post(`/api/v1/stocks`, body)
 };
 
 
@@ -27,15 +11,16 @@ const getListAssets = () => {
     return axios.get(`/api/v1/assets/`)
 };
 
+const getReport = () => {
+    return axios.get(`/api/v1/reports/reportDashboard`)
+};
+
 
 export default {
     //post
-    postRegister,
-    postLogin,
-    postRefills,
-    postWithdraw,
-    postCommand,
+    postAddStock,
 
     //get
     getListAssets,
+    getReport,
 };
