@@ -10,7 +10,7 @@ const Header = () => {
   const navigation = [
     { title: "Home", href: "/starter", icon: "bi bi-speedometer2", },
     { title: "Tài khoản", href: "/table", icon: "bi bi-people", },
-    { title: "Mở tài khoản", href: "/adduser", icon: "bi bi-textarea-resize", },
+    { title: "Thêm admin", href: "/adduser", icon: "bi bi-textarea-resize", },
     { title: "Cổ phiếu", href: "/stocktable", icon: "bi bi-link", },
     { title: "Mở cổ phiếu", href: "/addstock", icon: "bi bi-patch-check", },
     { title: "Đăng xuất", href: "/", icon: "bi bi-box-arrow-right", onClick: logout},
@@ -22,8 +22,7 @@ const Header = () => {
           {navigation.map((navi, index) => (
             <NavItem key={index} className="sidenav-bg" onClick={navi.onClick}>
               <Link
-                to={navi.href}
-                
+                to={navi.href}         
                 className={
                   location.pathname === navi.href
                     ? "text-primary nav-link py-3"

@@ -8,9 +8,18 @@ const Badges = () => {
       <Col>
         <Card>
           <CardTitle tag="h6" className="border-bottom p-3 mb-0">
-            <i className="bi bi-bell me-2"> </i>
-            Cập nhật cổ phiếu
+            
+            <Row>
+              <Col xs="6" sm="2">
+                Cập nhật cổ phiếu
+              </Col>
+              <Col xs="6" sm="2">
+                Cập nhật cổ phiếu
+              </Col>
+            </Row>
+
           </CardTitle>
+          
           <CardBody>
             <Row className="mt-3">
               <Col xs="6" sm="4">
@@ -79,13 +88,6 @@ const Badges = () => {
                     />
                   </FormGroup>
 
-                  <FormGroup>
-                    <Label for="exampleFile">Avatar</Label>
-                    <Input id="exampleFile" name="file" type="file" />
-                    <FormText>
-                      Chọn file ảnh để hiển thị ảnh đại diện
-                    </FormText>
-                  </FormGroup>
                     <Button className="btn" color="success">
                       Lưu
                     </Button>

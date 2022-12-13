@@ -1,7 +1,7 @@
 import { Col, Row } from "reactstrap";
 import SalesChart from "../components/dashboard/SalesChart";
-import Feeds from "../components/dashboard/Feeds";
 import StockTable from '../views/ui/StockTable'
+import ProjectTable from '../views/ui/ProjectTable'
 import TopCards from "../components/dashboard/TopCards";
 
 const Starter = () => {
@@ -16,7 +16,7 @@ const Starter = () => {
             <TopCards
               bg="bg-light-success text-success"
               title="Profit"
-              subtitle="Khối lượng mua"
+              subtitle="Tổng khối lượng mua"
               earning="$21k"
               icon="bi bi-wallet"
             />
@@ -25,7 +25,7 @@ const Starter = () => {
             <TopCards
               bg="bg-light-danger text-danger"
               title="Refunds"
-              subtitle="Khối lượng bán"
+              subtitle="Tổng khối lượng bán"
               earning="$1k"
               icon="bi bi-coin"
             />
@@ -34,7 +34,7 @@ const Starter = () => {
             <TopCards
               bg="bg-light-warning text-warning"
               title="New Project"
-              subtitle="Khối lượng giao dịch"
+              subtitle="Tổng Khối lượng giao dịch"
               earning="456"
               icon="bi bi-basket3"
             />
@@ -54,6 +54,9 @@ const Starter = () => {
       <Row>
         <Col lg="12">
           <StockTable />
+        </Col>
+        <Col lg="12">
+          <ProjectTable />
         </Col>
       </Row>
     </div>
