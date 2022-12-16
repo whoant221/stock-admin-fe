@@ -12,17 +12,16 @@ const Starter = () => {
 
   useEffect(() => {
     const money = async ()  =>{
-        try{
-            const data = await admin.getReport()
-            setReport(data.data);
-        }
-        catch (err) {
-            alert(err);
-        }
+      try{
+        const data = await admin.getReport()
+        setReport(data.data);
+      }
+      catch (err) {
+        window.location.reload();
+      }
     }
     money()
   }, []);
-  console.log(report);
 
   return (
     <div>
@@ -69,8 +68,7 @@ const Starter = () => {
             />
           </Col>
         </Col>
-      </Row>
-      : null }
+      </Row> : null }
       {/***Table ***/}
       <Row>
         <Col lg="12">
