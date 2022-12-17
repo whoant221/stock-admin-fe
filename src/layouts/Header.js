@@ -1,11 +1,12 @@
 import React from "react";
 import {Navbar,Nav, NavItem,} from "reactstrap";
 import { Link, useLocation } from "react-router-dom";
+import blockChainStorage from "../utils/storage";
 
 const Header = () => {
   let location = useLocation();
 
-  const logout = () => { localStorage.removeItem('token-info') }
+  const logout = () => { blockChainStorage.removeInfoClient()}
 
   const navigation = [
     { title: "Home", href: "/starter", icon: "bi bi-speedometer2", },

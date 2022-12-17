@@ -213,14 +213,9 @@ const Cards = () => {
               <thead>
               <tr>
                   <th>Cổ phiếu</th>
-                  <th>Tham chiếu</th>
-                  <th>Trần</th>
-                  <th>Sàn</th>
-                  <th>Khớp lệnh</th>
-                  <th>Trạng thái</th>
-                  <th>Tổng KL</th>
-                  <th>Cao</th>
-                  <th>Thấp</th>
+                  <th>Tổng giá cổ phiếu sở hữu</th>
+                  <th>Giá sở hữu</th>
+                  <th>Giá khóa</th>
                 </tr>
               </thead>
 
@@ -243,9 +238,9 @@ const Cards = () => {
                       </div>
                     </td>
                     <td>{tdata.project}</td>
-                    <td>{tdata.status}</td>
+                    {/* <td>{tdata.status}</td>
                     <td>{tdata.weeks}</td>
-                    <td>{tdata.budget}</td>
+                    <td>{tdata.budget}</td> */}
                     <td>
                       {
                         tdata.status === "pending" 

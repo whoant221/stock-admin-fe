@@ -1,5 +1,5 @@
 import axios from 'axios'
-// import blockChainStorage from '~/utils/storage';
+import blockChainStorage from '../utils/storage';
 
 const instance = axios.create({
     baseURL:`https://api-stock.votuan.xyz`,
@@ -14,8 +14,8 @@ const instance = axios.create({
 });
 
   instance.interceptors.request.use(function (config) {
-    // const TOKEN = blockChainStorage.getInfoClient()
-    // config.headers.Authorization = TOKEN ? `Bearer ${TOKEN.data.token}` : ''
+    const TOKEN = blockChainStorage.getInfoClient()
+    config.headers.Authorization = TOKEN ? `Bearer ${TOKEN.data.token}` : ''
     return config;
   }, function (error) {
     return Promise.reject(error);

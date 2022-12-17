@@ -1,6 +1,39 @@
 import { Card, Row, Col, CardTitle, CardBody, Button, Form, FormGroup, Label, Input, FormText} from "reactstrap";
+import { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import React from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import admin from "../../api/admin";
 
 const Forms = () => {
+
+  const navigate = useNavigate();
+  const [name, setName] = useState('');
+  const [fullName, setFullName] = useState();
+  const [password, setPassword] = useState('');
+
+  const AddAdmin = async () => {
+    if ( name == '' || password == '' || fullName == '') toast.error("Vui lòng nhập thông tin đầy đủ !");
+    else {
+        try {
+            const res = await admin.postAddAdmin({
+                username: name,
+                password: password,
+                fullName: fullName,
+            });
+            if (res.success === false) toast.error("Đường truyền bị ngắt ngoãng !");
+            else {
+                toast.success("Tạo admin thành công !");
+                navigate('/');
+            }
+        }
+        catch (err) {
+            toast.error('Không thể hỗ trợ tạo !');
+        }
+    }
+}
+
   return (
     <Row>
       <Col>
@@ -17,43 +50,18 @@ const Forms = () => {
                   id="exampleEmail"
                   name="email"
                   placeholder="nhập họ tên khách hàng"
-                  type="email"
+                  type="text"
+                  onChange={(e) => setFullName(e.target.value)}
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="examplePassword">Số tài khoản ngân hàng</Label>
-                <Input
-                  id="examplePassword"
-                  name="password"
-                  placeholder="nhập số tài khoản ngân hàng"
-                  type="password"
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="examplePassword">Ngày sinh</Label>
-                <Input
-                  id="examplePassword"
-                  name="password"
-                  placeholder="nhập ngày sinh"
-                  type="password"
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleEmail">Số điện thoại</Label>
-                <Input
-                  id="exampleEmail"
-                  name="email"
-                  placeholder="nhập số điện thoại khách hàng"
-                  type="email"
-                />
-              </FormGroup>
-              <FormGroup>
-                <Label for="exampleEmail">Địa chỉ</Label>
+                <Label for="exampleEmail">Tên sử dụng</Label>
                 <Input
                   id="exampleEmail"
                   name="email"
                   placeholder="nhập địa chỉ khách hàng"
-                  type="email"
+                  type="text"
+                  onChange={(e) => setName(e.target.value)}
                 />
               </FormGroup>
               <FormGroup>
@@ -63,10 +71,11 @@ const Forms = () => {
                   name="password"
                   placeholder="nhập mật khẩu"
                   type="password"
+                  onChange={(e) => setPassword(e.target.value)}
                 />
               </FormGroup>
 
-                <Button className="btn" color="success">
+                <Button className="btn" color="success" onClick={AddAdmin}>
                   Tạo user
                 </Button>
             </Form>

@@ -74,9 +74,6 @@ const Starter = () => {
         <Col lg="12">
           <StockTable />
         </Col>
-        <Col lg="12">
-          <ProjectTable />
-        </Col>
       </Row>
     </div>
   );

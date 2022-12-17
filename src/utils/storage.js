@@ -18,7 +18,7 @@ const createStorage = (LOCAL_STORAGE_KEY) => {
     }
 }
 
-const storage = createStorage("blockchain")
+const storage = createStorage("blockchainAdmin")
 const PROFILE_CLIENT = 'info_client';
 const PROFILE_FIREBASE = 'info_client';
 const PROFILE_REGISTER = 'info_register';

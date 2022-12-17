@@ -1,29 +1,39 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import React from 'react'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import admin from '../api/admin';
+import blockChainStorage from '../utils/storage';
 
 function Login() {
     const navigate = useNavigate();
-    const [email, setEmail] = useState('');
+    const [name, setName] = useState('');
     const [password, setPassword] = useState('');
 
-    const login = (e) => {
-        e.preventDefault();
-        console.log(email, password);
-        const userData = {
-            email,
-            password,
-        };
-        localStorage.setItem('token-info', JSON.stringify(userData));
-        setEmail('');
-        setPassword('');
-    };
-    const logout = () => { localStorage.removeItem('token-info') }
 
-    //set user chua dang nhap
-    // useEffect(() => {
-    //         if (!userData) { navigate('/login');}
-    // }, [navigate]);
+
+    const Login = async () => {
+        if ( name == '' || password == '') toast.error("Vui lòng nhập thông tin đầy đủ !");
+        else {
+            try {
+                const res = await admin.postLogin({
+                    username: name,
+                    password: password,
+                });
+                if (res.success === false) toast.error("Đường truyền bị ngắt ngoãng !");
+                else {
+                    blockChainStorage.setInfoClient(res)
+                    toast.success("Đăng nhập thành công !");
+                    navigate('/');
+                }
+            }
+            catch (err) {
+                toast.error('Tài khoản ko tồn tại !');
+            }
+        }
+    }
+
   return (
     <main className="vh-100">
         <div className="container-fluid h-custom">
@@ -37,11 +47,11 @@ function Login() {
                     <form action="">
 
                         <div className="form-outline mb-4">
-                            <input type="email" id="form3Example3" 
+                            <input type="text" id="form3Example3" 
                             className="form-control form-control-lg"
                             placeholder="Enter a valid email address"
-                            onChange={(e) => setEmail(e.target.value)}
-                            value={email}/>
+                            onChange={(e) => setName(e.target.value)}
+                            value={name}/>
                         </div>
 
                         <div className="form-outline mb-3">
@@ -53,7 +63,7 @@ function Login() {
                         </div>
 
                         <div className="text-center text-lg-start mt-4 pt-2">
-                            <button type="submit" className="btn btn-primary btn-lg" onClick={login}>Login</button>
+                            <button type="submit" className="btn btn-primary btn-lg" onClick={Login}>Login</button>
                             {/* <button onClickCapture={logout}>logout user</button> */}
                         </div>
                     </form>
