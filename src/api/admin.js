@@ -13,6 +13,15 @@ const postAddAdmin =(body) => {
     return axios.post(`/api/v1/internal_users/create`, body)
 };
 
+const postEnable =(body) => {
+    return axios.post(`/api/v1/stocks/stock_2/mark_as_enable`, body)
+};
+
+const postDisable =(body) => {
+    return axios.post(`/api/v1/stocks/sto1ck_2/mark_as_disable`, body)
+};
+
+
 //get
 const getListAssets = () => {
     return axios.get(`/api/v1/assets/`)
@@ -34,16 +43,21 @@ const getListStock = () => {
     return axios.get(`/api/v1/stocks`)
 };
 
-const getListStockNow = (id) => {
-    return axios.get(`/api/v1/sessions/currentReport?symbol=${id}`)
+const getAssets= () => {
+    return axios.get(`/api/v1/assets`)
 };
 
+const getDetailStock = (id) => {
+    return axios.get(`/api/v1/sessions/currentReport?symbol=${id}`)
+};
 
 export default {
     //post
     postLogin,
     postAddStock,
     postAddAdmin,
+    postEnable,
+    postDisable,
 
     //get
     getListAssets,
@@ -51,5 +65,6 @@ export default {
     getChart,
     getListUser,
     getListStock,
-    getListStockNow,
+    getAssets,
+    getDetailStock,
 };

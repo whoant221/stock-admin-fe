@@ -1,8 +1,34 @@
-import { Card, Row, Col, CardTitle, CardBody, Button, Form, FormGroup, Label, Input, FormText,
+import { Card, Row, Col, CardTitle, CardBody, Table, Button
 } from "reactstrap";
-import user1 from "../../assets/images/users/user1.jpg";
+import admin from "../../api/admin";
+import { useEffect, useState } from 'react';
+import blockChainStorage from "../../utils/storage";
+
 
 const Badges = () => {
+
+  const [report, setReport] = useState([]);
+  const symbol = blockChainStorage.getNameBank()
+
+  useEffect(() => {
+    const money = async ()  =>{
+      try{
+        const data = await admin.getDetailStock(`${symbol}`)
+        setReport(data.data);
+      }
+      catch (err) {
+        window.location.reload();
+      }
+    }
+    money()
+  }, []);
+
+  const Open = async () => {
+
+  }
+  
+
+
   return (
     <Row>
       <Col>
@@ -13,86 +39,52 @@ const Badges = () => {
               <Col xs="6" sm="2">
                 Cập nhật cổ phiếu
               </Col>
-              <Col xs="6" sm="2">
-                Cập nhật cổ phiếu
-              </Col>
             </Row>
 
           </CardTitle>
           
           <CardBody>
             <Row className="mt-3">
-              <Col xs="6" sm="4">
-                <div className="align-items-center p-2 ms-3">
-                  <img
-                    src={user1}
-                    className="avata"
-                    alt="avatar"
-                    width="200"
-                    height="200"
-                  />
-                  <div className="mt-2">
-                    <h6 className="mb-1">Phúc Thanh</h6>
-                    <div className="text-muted font-05">Địa chỉ: 144A Chi Lăng p12 Thành Phố Vũng Tàu</div>
-                    <div className="text-muted font-05">Số điện thoại 0962571879</div>
-                  </div>
 
-                  <Button className="btn mt-3" color="danger">
-                    Đóng tài khoản
-                  </Button>
-                </div>
+              <Col xs="12" sm="12">
+              <Table className="no-wrap mt-3 align-middle" responsive borderless >
+                <thead>
+                <tr>
+                    <th>Cổ phiếu</th>
+                    <th>Giá trần</th>
+                    <th>Giá sàn</th>
+                    <th>Giá tham chiếu</th>
+                    <th>Cao</th>
+                    <th>Thấp</th>
+                    <th>Khối lượng</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr className="border-top cursor" >
+                      <td><h6 className="mb-0 pt-2 pb-2">{symbol}</h6></td>
+                      <td>{report.floor_price}</td>
+                      <td>{report.ceil_price}</td>
+                      <td>{report.ref_price}</td>
+                      <td>{report.highest_price}</td>
+                      <td>{report.lowest_price === '99999999' ? '0' : report.lowest_price}</td>
+                      <td>{report.total_volume}</td>
+                    </tr>
+
+                </tbody>
+              </Table>
+
+              <Button className="btn mt-3 m-3" color="danger" >
+                Đóng cổ phiếu
+              </Button>
+              <Button className="btn mt-3 m-3" color="success" onClick={Open}>
+                Mở cổ phiếu
+              </Button>
 
               </Col>
 
-              <Col
-                sm="12"
-                md={{
-                  size: 8,
-                }}
-              >
-                <Form>
-                  <FormGroup>
-                    <Label for="exampleEmail">Họ và tên</Label>
-                    <Input
-                      id="exampleEmail"
-                      name="email"
-                      placeholder="nhập họ tên khách hàng"
-                      type="email"
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label for="exampleEmail">Số điện thoại</Label>
-                    <Input
-                      id="exampleEmail"
-                      name="email"
-                      placeholder="nhập số điện thoại khách hàng"
-                      type="email"
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label for="exampleEmail">Địa chỉ</Label>
-                    <Input
-                      id="exampleEmail"
-                      name="email"
-                      placeholder="nhập địa chỉ khách hàng"
-                      type="email"
-                    />
-                  </FormGroup>
-                  <FormGroup>
-                    <Label for="examplePassword">Mật khẩu</Label>
-                    <Input
-                      id="examplePassword"
-                      name="password"
-                      placeholder="nhập mật khẩu"
-                      type="password"
-                    />
-                  </FormGroup>
 
-                    <Button className="btn" color="success">
-                      Lưu
-                    </Button>
-                </Form>
-              </Col>
 
             </Row>
         </CardBody>

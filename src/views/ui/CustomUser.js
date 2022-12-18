@@ -2,61 +2,11 @@ import { Card, Row, Col, CardTitle, CardBody, Button, Form, FormGroup, Label, In
 } from "reactstrap";
 import { useNavigate } from 'react-router-dom';
 import { useState, useEffect } from 'react'
-import inforUser from "../../api/admin";
-import user1 from "../../assets/images/users/user1.jpg";
-import user2 from "../../assets/images/users/user2.jpg";
-import user3 from "../../assets/images/users/user3.jpg";
-import user4 from "../../assets/images/users/user4.jpg";
-import user5 from "../../assets/images/users/user5.jpg";
+import admin from "../../api/admin";
 
 
-const tableData = [
-  {
-    avatar: user1,
-    name: "ACB",
-    adress: "Ngân hàng thương mại cổ phần đầu tư và phát triển việt nam",
-    project: "234",
-    status: "pending",
-    weeks: "35",
-    budget: "95K",
-  },
-  {
-    avatar: user2,
-    name: "BID",
-    adress: "Tập đoàn xăng dầu Việt Nam",
-    project: "4567",
-    status: "done",
-    weeks: "35",
-    budget: "95K",
-  },
-  {
-    avatar: user3,
-    name: "BVH",
-    adress: "Tập đoàn Bảo Việt",
-    project: "8907",
-    status: "holt",
-    weeks: "35",
-    budget: "95K",
-  },
-  {
-    avatar: user4,
-    name: "CTG",
-    adress: "Công ty cổ phần tập đoàn Hòa Phát",
-    project: "809",
-    status: "pending",
-    weeks: "35",
-    budget: "95K",
-  },
-  {
-    avatar: user5,
-    name: "FPT",
-    adress: "Công ty cổ phần PFT",
-    project: "54363",
-    status: "done",
-    weeks: "35",
-    budget: "95K",
-  },
-];
+
+
 const Cards = () => {
   
   const navigate = useNavigate();
@@ -66,6 +16,23 @@ const Cards = () => {
   const [assetsLock, setAssetsLock] = useState();
   const [sumAssets, setSumAssets] = useState();
   const [listStock, setListStock] = useState();
+
+
+  const [report, setReport] = useState([]);
+
+  useEffect(() => {
+    const money = async ()  =>{
+      try{
+        const data = await admin.getAssets()
+        setReport(data.data.assets);
+      }
+      catch (err) {
+        window.location.reload();
+      }
+    }
+    money()
+  }, []);
+  console.log(report);
 
   // let coinVND = Intl.NumberFormat("vi-US", {
   //     style: "currency",
@@ -126,13 +93,6 @@ const Cards = () => {
               
               <Col xs="6" sm="4">
                 <div className="align-items-center p-2 ms-3">
-                  <img
-                    src={user1}
-                    className="avata"
-                    alt="avatar"
-                    width="200"
-                    height="200"
-                  />
                   <div className="mt-2">
                     <h6 className="mb-1">Phúc Thanh</h6>
                     <div className="text-muted font-05">Địa chỉ: 144A Chi Lăng p12 Thành Phố Vũng Tàu</div>
@@ -220,41 +180,21 @@ const Cards = () => {
               </thead>
 
               <tbody>
-                {tableData.map((tdata, index) => (
-                  <tr key={index} className="border-top cursor" onClick={()=>{navigate('/customstock')}}>
+
+                  <tr className="border-top cursor" onClick={()=>{navigate('/customstock')}}>
                     <td>
                       <div className="d-flex align-items-center p-2">
-                        <img
-                          src={tdata.avatar}
-                          className="rounded-circle"
-                          alt="avatar"
-                          width="45"
-                          height="45"
-                        />
                         <div className="ms-3">
-                          <h6 className="mb-0">{tdata.name}</h6>
-                          <span className="text-muted font-05 name">{tdata.adress}</span>
+                          <h6 className="mb-0">asd</h6>
+                          <span className="text-muted font-05 name">asd</span>
                         </div>
                       </div>
                     </td>
-                    <td>{tdata.project}</td>
-                    {/* <td>{tdata.status}</td>
-                    <td>{tdata.weeks}</td>
-                    <td>{tdata.budget}</td> */}
-                    <td>
-                      {
-                        tdata.status === "pending" 
-                        ? ( <span className="p-2 bg-danger rounded-circle d-inline-block ms-3"></span> ) 
-                        : tdata.status === "holt" 
-                        ? ( <span className="p-2 bg-warning rounded-circle d-inline-block ms-3"></span>) 
-                        : ( <span className="p-2 bg-success rounded-circle d-inline-block ms-3"></span>)
-                      }
-                    </td>
-                    <td>{tdata.budget}</td>
-                    <td>{tdata.budget}</td>
-                    <td>{tdata.budget}</td>
+                    <td>asd</td>
+                    <td>asd</td>
+                    <td>asd</td>
                   </tr>
-                ))}
+     
               </tbody>
             </Table>
           </CardBody>

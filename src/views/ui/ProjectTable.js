@@ -40,8 +40,8 @@ const navigate = useNavigate();
             {report ? report.map((tdata, index) => (
               <tr key={index} className="border-top cursor" onClick={()=>{navigate('/customuser')}}>
                 <td>
-                  <div className="d-flex p-2">
-                    <div className="ms-3">
+                  <div className="d-flex pt-2 pb-2">
+                    <div className="">
                       <h6 className="mb-0">{tdata.username}</h6>
                       <span className="text-muted font-05 name">{tdata.address}</span>
                     </div>
