@@ -185,14 +185,14 @@ const Cards = () => {
                     <td>
                       <div className="d-flex align-items-center p-2">
                         <div className="ms-3">
-                          <h6 className="mb-0">asd</h6>
-                          <span className="text-muted font-05 name">asd</span>
+                          <h6 className="mb-0">ACB</h6>
+                          <span className="text-muted font-05 name">Ngần hàng ACB</span>
                         </div>
                       </div>
                     </td>
-                    <td>asd</td>
-                    <td>asd</td>
-                    <td>asd</td>
+                    <td>894</td>
+                    <td>1000023</td>
+                    <td>435252</td>
                   </tr>
      
               </tbody>

@@ -12,7 +12,9 @@ const Breadcrumbs = () => {
     const money = async ()  =>{
       try{
         const data = await admin.getListStock()
+        
         setReport(data.data.stocks);
+
       }
       catch (err) {
         window.location.reload();
@@ -21,7 +23,10 @@ const Breadcrumbs = () => {
     money()
   }, []);
 
+  const find = report.findIndex(i => i.symbol == 'VND')
+  report.splice(find,1)
 
+  
   return (
         <Card>
       <CardBody>
@@ -33,7 +38,6 @@ const Breadcrumbs = () => {
               <th>Biểu tượng</th>
             </tr>
           </thead>
-
           <tbody>
             {report ? report.map((tdata, index) => (
               <tr key={index} className="border-top cursor" onClick={()=>{

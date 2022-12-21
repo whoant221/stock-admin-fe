@@ -64,9 +64,9 @@ const Badges = () => {
 
                     <tr className="border-top cursor" >
                       <td><h6 className="mb-0 pt-2 pb-2">{symbol}</h6></td>
-                      <td>{report.floor_price}</td>
-                      <td>{report.ceil_price}</td>
-                      <td>{report.ref_price}</td>
+                      <td>{parseFloat(report.floor_price).toFixed(2) === 'NaN'? '0' : parseFloat(report.floor_price).toFixed(2) }</td>
+                      <td>{parseFloat(report.ceil_price).toFixed(2) === 'NaN'? '0' : parseFloat(report.ceil_price).toFixed(2)}</td>
+                      <td>{parseFloat(report.ref_price).toFixed(2) === 'NaN'? '0' : parseFloat(report.ref_price).toFixed(2)}</td>
                       <td>{report.highest_price}</td>
                       <td>{report.lowest_price === '99999999' ? '0' : report.lowest_price}</td>
                       <td>{report.total_volume}</td>
