@@ -17,7 +17,6 @@ const Cards = () => {
   const [sumAssets, setSumAssets] = useState();
   const [listStock, setListStock] = useState();
 
-
   const [report, setReport] = useState([]);
 
   useEffect(() => {
@@ -34,44 +33,12 @@ const Cards = () => {
   }, []);
   console.log(report);
 
-  // let coinVND = Intl.NumberFormat("vi-US", {
-  //     style: "currency",
-  //     currency: "VND",
-  // });
-
-  // useEffect(() => {
-  //     const money = async ()  =>{
-  //         try{
-  //             const data = await inforUser.getListAssets()
-  //             const findStock = data?.data?.assets.findIndex(items => items.name === 'VND');
-  //             setAssets(coinVND.format(data?.data.assets[findStock].free_asset));
-  //             setAssetsLock(coinVND.format(data?.data.assets[findStock].locked_asset));
-  //             setSumAssets(coinVND.format(
-  //                 Number.parseInt(data?.data.assets[findStock].free_asset) + 
-  //                 Number.parseInt(data?.data.assets[findStock].locked_asset)
-  //             ));
-
-  //             setListStock(data.data.assets);
-
-  //             // setListRender(listStock.splice(findStock, 1))
-  //         }
-  //         catch (err) {
-  //             alert(err);
-  //         }
-  //     }
-  //     money()
-  // }, []);
-
-
   return (
     <Row>
       <Col>
         <Card>
-          <CardTitle tag="h6" className="border-bottom p-3 mb-0">
-            
+          <CardTitle tag="h6" className="border-bottom p-3 mb-0"> 
             <Row>
-
-              
               <Col xs="6" sm="2" onClick={()=> {
                 setLayout1('none')
                 setLayout2('')
@@ -105,7 +72,6 @@ const Cards = () => {
                 </div>
 
               </Col>
-
               <Col
                 sm="12"
                 md={{

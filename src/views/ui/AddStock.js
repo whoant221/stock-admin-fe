@@ -22,14 +22,14 @@ import 'react-toastify/dist/ReactToastify.css';
                   symbol: SIC,
                   initial_price: price,
               });
-              if (res.success === false) toast.error("Đường truyền bị ngắt ngoãng !");
+              if (res.success === false) toast.error("Cổ phiếu đã tồn tại !");
               else {
-                  toast.success("Đăng nhập thành công !");
+                  toast.success("Tạo thành công !");
                   navigate('/');
               }
           }
           catch (err) {
-              toast.error('Tài khoản ko tồn tại !');
+              toast.error('Đường truyền bị ngắt quãng !');
           }
       }
     }

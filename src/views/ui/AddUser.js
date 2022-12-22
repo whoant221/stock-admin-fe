@@ -22,7 +22,7 @@ const Forms = () => {
                 password: password,
                 fullName: fullName,
             });
-            if (res.success === false) toast.error("Đường truyền bị ngắt ngoãng !");
+            if (res.success === false) toast.error("Tài khoản đã tồn tại !");
             else {
                 toast.success("Tạo admin thành công !");
                 navigate('/');
