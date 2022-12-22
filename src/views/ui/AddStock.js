@@ -12,24 +12,26 @@ import 'react-toastify/dist/ReactToastify.css';
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
 
+    const [notifi, setnotifi] = useState();
+
 
     const AddStock = async () => {
       if ( SIC == '' || name == '' || price == '') toast.error("Vui lòng nhập thông tin đầy đủ !");
       else {
-          try {
+          try{
               const res = await admin.postAddStock({
                   name: name,
                   symbol: SIC,
                   initial_price: price,
               });
-              if (res.success === false) toast.error("Cổ phiếu đã tồn tại !");
+              if (res.success === false) setnotifi(res.errorMessage)
               else {
-                  toast.success("Tạo thành công !");
+                  toast.success(`${res.data.message}`);
                   navigate('/');
               }
           }
           catch (err) {
-              toast.error('Đường truyền bị ngắt quãng !');
+              toast.error(`${err.response.data.errorMessage}`);
           }
       }
     }
