@@ -43,6 +43,7 @@ const Breadcrumbs = () => {
               <tr key={index} className="border-top cursor" onClick={()=>{
                 navigate('/customstock')
                 blockChainStorage.setNameBank(tdata.symbol)
+                blockChainStorage.setNameStock(tdata.stock_id)
               }}>
                 <td><h6 className="mb-0 pb-2 pt-2">{tdata.stock_id}</h6></td>
                 <td>{tdata.name}</td>

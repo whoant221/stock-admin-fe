@@ -17,7 +17,7 @@ const Starter = () => {
         setReport(data.data);
       }
       catch (err) {
-        window.location.reload();
+        // window.location.reload();
       }
     }
     money()

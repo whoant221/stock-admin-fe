@@ -21,6 +21,7 @@ const createStorage = (LOCAL_STORAGE_KEY) => {
 const storage = createStorage("blockchainAdmin")
 const PROFILE_CLIENT = 'info_client';
 const NAME_BANK = 'name_bank';
+const NAME_STOCK = 'name_stock';
 
 const blockChainStorage = {
     setInfoClient: (data) => storage.set(PROFILE_CLIENT, data),
@@ -29,6 +30,9 @@ const blockChainStorage = {
 
     setNameBank: (data) => storage.set(NAME_BANK, data),
     getNameBank: () => storage.get(NAME_BANK),
+
+    setNameStock: (data) => storage.set(NAME_STOCK, data),
+    getNameStock: () => storage.get(NAME_STOCK),
     
 }
 

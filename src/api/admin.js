@@ -13,12 +13,12 @@ const postAddAdmin =(body) => {
     return axios.post(`/api/v1/internal_users/create`, body)
 };
 
-const postEnable =(body) => {
-    return axios.post(`/api/v1/stocks/stock_2/mark_as_enable`, body)
+const postEnable =(body ,id) => {
+    return axios.post(`/api/v1/stocks/${id}/mark_as_enable`, body)
 };
 
-const postDisable =(body) => {
-    return axios.post(`/api/v1/stocks/sto1ck_2/mark_as_disable`, body)
+const postDisable =(body, id) => {
+    return axios.post(`/api/v1/stocks/${id}/mark_as_disable`, body)
 };
 
 

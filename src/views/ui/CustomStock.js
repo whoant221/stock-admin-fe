@@ -2,13 +2,17 @@ import { Card, Row, Col, CardTitle, CardBody, Table, Button
 } from "reactstrap";
 import admin from "../../api/admin";
 import { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import blockChainStorage from "../../utils/storage";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const Badges = () => {
-
+  const navigate = useNavigate();
   const [report, setReport] = useState([]);
   const symbol = blockChainStorage.getNameBank()
+  const nameStock = blockChainStorage.getNameStock()
 
   useEffect(() => {
     const money = async ()  =>{
@@ -24,8 +28,42 @@ const Badges = () => {
   }, []);
 
   const Open = async () => {
-
+      try {
+          const res = await admin.postEnable({
+              name: report.floor_price ,
+              symbol: symbol ,
+              price: report.ref_price,
+          } , nameStock);
+          if (res.success === false) toast.error("Đường truyền bị ngắt ngoãng !");
+          else {
+              toast.success(`${res.data.message}`);
+              navigate('/');
+          }
+      }
+      catch (err) {
+          toast.error(`${err.response.data.errorMessage}`);
+      }
   }
+
+  console.log(report.floor_price, symbol,report.ref_price );
+  const Close = async () => {
+    try {
+      const res = await admin.postDisable({
+          name: report.floor_price ,
+          symbol: symbol ,
+          price: report.ref_price,
+      } , nameStock);
+      if (res.success === false) toast.error("Đường truyền bị ngắt ngoãng !");
+      else {
+          toast.success(`${res.data.message}`);
+          navigate('/');
+      }
+  }
+  catch (err) {
+      toast.error(`${err.response.data.errorMessage}`);
+  }
+  }
+  
   
 
 
@@ -75,7 +113,7 @@ const Badges = () => {
                 </tbody>
               </Table>
 
-              <Button className="btn mt-3 m-3" color="danger" >
+              <Button className="btn mt-3 m-3" color="danger" onClick={Close}>
                 Đóng cổ phiếu
               </Button>
               <Button className="btn mt-3 m-3" color="success" onClick={Open}>
