@@ -134,7 +134,7 @@ const Cards = () => {
             
           </CardBody>
 
-          <CardBody style={{display: layout2}}>
+          <CardBody>
             <Table className="no-wrap mt-3 align-middle" responsive borderless >
               <thead>
               <tr>
