@@ -2,7 +2,7 @@ import axios from 'axios'
 import blockChainStorage from '../utils/storage';
 
 const instance = axios.create({
-    baseURL:`https://api-stock.votuan.xyz`,
+    baseURL:`https://stock-be.fly.dev`,
     timeout: 3000,
 
     headers: {
